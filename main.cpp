@@ -8,6 +8,16 @@ void MyDisplay()
 	glColor3f(255.0, 0.0, 0.0);
 	glutSolidSphere(0.5, 100, 100);
 	glEnd();
+
+	glColor3f(0.0, 0.0, 255.0);
+	glTranslatef(-3.0, 0.0, 0.0);
+	glutSolidSphere(0.25, 100, 100);
+	glEnd();
+
+	glColor3f(128.0, 128.0, 128.0);
+	glTranslatef(-0.5, 0.0, 0.0);
+	glutSolidSphere(0.05, 100, 100);
+	glEnd();
 	glFlush();
 }
 
@@ -24,7 +34,7 @@ void MyReshape(int width, int height)
 
 int main()
 {
-	glutInitWindowSize(900, 300);
+	glutInitWindowSize(1500, 700);
 	glutCreateWindow("OpenGL Solar System");
 	glutDisplayFunc(MyDisplay);
 	glutReshapeFunc(MyReshape);
