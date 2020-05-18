@@ -6,26 +6,27 @@ GLfloat delta = 0.0;
 void MyDisplay()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
 	glColor3f(255.0, 0.0, 0.0);
 	glutSolidSphere(0.5, 100, 100);
-	glEnd();
 
 	glPushMatrix();
-	glColor3f(0.0, 0.0, 255.0);
-	glRotatef((GLfloat)delta, 0.0, 1.0, 0.0);
+
+	glRotatef((GLfloat)delta, 0.0, 1.0f, 0.0);
 	glTranslatef(-3.0, 0.0, 0.0);
+	glColor3f(0.0, 0.0, 255.0);
 	glutSolidSphere(0.25, 100, 100);
-	glEnd();
 
-	glPushMatrix();
-	glColor3f(128.0, 128.0, 128.0);
-	glRotatef((GLfloat)delta, 0.0, 1.0, 0.0);
+	glRotatef((GLfloat)delta, 0.0, 1.0f, 0.0);
 	glTranslatef(-0.5, 0.0, 0.0);
+	glColor3f(128.0, 128.0, 128.0);
 	glutSolidSphere(0.05, 100, 100);
-	glEnd();
 
 	glPopMatrix();
-	glPopMatrix();
+	glutSwapBuffers();
+
 	glFlush();
 }
 
@@ -37,12 +38,12 @@ void MyReshape(int width, int height)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-1.0 * widthFactor, 1.0 * widthFactor, -1.0 * heightFactor, 1.0 * heightFactor, -1.0, 1.0);
+	glOrtho(-1.0 * widthFactor, 1.0 * widthFactor, -1.0 * heightFactor, 1.0 * heightFactor, -10.0, 10.0);
 }
 
 void MyTimer(int time)
 {
-	delta = delta + 0.1;
+	delta = delta + 1.0f;
 	glutPostRedisplay();
 	glutTimerFunc(10, MyTimer, 1);
 }
