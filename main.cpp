@@ -9,6 +9,12 @@ void MyDisplay()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
+	gluLookAt(
+		0.0, 1.0, 3.0,
+		0.0, 0.0, 0.0,
+		0.0, 1.0, 0.0
+	);
+
 	glColor3f(255.0, 0.0, 0.0);
 	glutSolidSphere(0.5, 100, 100);
 
@@ -32,7 +38,6 @@ void MyDisplay()
 
 void MyReshape(int width, int height)
 {
-	glViewport(0, 0, width, height);
 	GLfloat widthFactor = (GLfloat)width / 300;
 	GLfloat heightFactor = (GLfloat)height / 300;
 
@@ -54,7 +59,7 @@ int main()
 	glutCreateWindow("OpenGL Solar System");
 	glutDisplayFunc(MyDisplay);
 	glutReshapeFunc(MyReshape);
-	glutTimerFunc(100, MyTimer, 1);
+	glutTimerFunc(10, MyTimer, 1);
 	glutMainLoop();
 	return 0;
 }
