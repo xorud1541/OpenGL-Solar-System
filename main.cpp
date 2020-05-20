@@ -10,7 +10,7 @@ void MyDisplay()
 	glLoadIdentity();
 
 	gluLookAt(
-		0.0, 5.0, 3.0,
+		0.0, 5.0, 7.0,
 		0.0, 0.0, 0.0,
 		0.0, 1.0, 0.0
 	);
@@ -38,14 +38,14 @@ void MyDisplay()
 
 void MyReshape(int width, int height)
 {
+	glViewport(0, 0, width, height);
 	GLfloat widthFactor = (GLfloat)width / 300;
 	GLfloat heightFactor = (GLfloat)height / 300;
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	gluPerspective(90, 1024.f / 768.f, 0.1f, 100.0f);
-	//glOrtho(-1.0 * widthFactor, 1.0 * widthFactor, -1.0 * heightFactor, 1.0 * heightFactor, -10.0, 10.0);
+	glFrustum(-1.0 * widthFactor, 1.0 * widthFactor, -1.0 * heightFactor, 1.0 * heightFactor, 3.0f, 15.0f);
 }
 
 void MyTimer(int time)
