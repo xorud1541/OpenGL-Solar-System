@@ -3,7 +3,7 @@
 #include <gl/GLU.h>
 
 GLfloat delta = 0.0;
-void MyDisplay()
+void showEvent()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
@@ -37,7 +37,7 @@ void MyDisplay()
 	glFlush();
 }
 
-void MyReshape(int width, int height)
+void resizeEvent(int width, int height)
 {
 	glViewport(0, 0, width, height);
 	GLfloat widthFactor = (GLfloat)width / 300;
@@ -49,11 +49,31 @@ void MyReshape(int width, int height)
 	glFrustum(-1.0 * widthFactor, 1.0 * widthFactor, -1.0 * heightFactor, 1.0 * heightFactor, 3.0f, 15.0f);
 }
 
-void MyTimer(int time)
+void timerEvent(int time)
 {
 	delta = delta + 1.0f;
 	glutPostRedisplay();
-	glutTimerFunc(10, MyTimer, 1);
+	glutTimerFunc(10, timerEvent, 1);
+}
+
+void keyEvent(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+	case 100: //left
+		break;
+	case 102: //right
+		break;
+	case 101: // up
+		break;
+	case 103: // down
+		break;
+
+	default:
+		break;
+	}
+
+	glutPostRedisplay();
 }
 
 int main()
@@ -61,9 +81,10 @@ int main()
 	glutInitWindowSize(1500, 700);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_DEPTH);
 	glutCreateWindow("OpenGL Solar System");
-	glutDisplayFunc(MyDisplay);
-	glutReshapeFunc(MyReshape);
-	glutTimerFunc(10, MyTimer, 1);
+	glutDisplayFunc(showEvent);
+	glutReshapeFunc(resizeEvent);
+	glutKeyboardFunc(keyEvent);
+	glutTimerFunc(10, timerEvent, 1);
 	glutMainLoop();
 	return 0;
 }
