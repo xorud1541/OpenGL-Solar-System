@@ -3,6 +3,9 @@
 #include <gl/GLU.h>
 
 GLfloat delta = 0.0;
+GLfloat cameraY = 0.0;
+GLfloat cameraZ = 0.0;
+
 void showEvent()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -11,7 +14,7 @@ void showEvent()
 	glLoadIdentity();
 
 	gluLookAt(
-		0.0, 0.0, 7.0,
+		0.0, cameraY, 7.0,
 		0.0, 0.0, 0.0,
 		0.0, 1.0, 0.0
 	);
@@ -60,16 +63,15 @@ void keyEvent(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
-	case 100: //left
+	case 'a': //left
 		break;
-	case 102: //right
+	case 'd': //right
 		break;
-	case 101: // up
+	case 'w': // up
+		cameraY += 0.1;
 		break;
-	case 103: // down
-		break;
-
-	default:
+	case 's': // down
+		cameraY -= 0.1;
 		break;
 	}
 
