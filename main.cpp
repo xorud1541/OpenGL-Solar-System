@@ -5,12 +5,13 @@
 GLfloat delta = 0.0;
 void MyDisplay()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
 	gluLookAt(
-		0.0, 5.0, 7.0,
+		0.0, 0.0, 7.0,
 		0.0, 0.0, 0.0,
 		0.0, 1.0, 0.0
 	);
@@ -58,6 +59,7 @@ void MyTimer(int time)
 int main()
 {
 	glutInitWindowSize(1500, 700);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_DEPTH);
 	glutCreateWindow("OpenGL Solar System");
 	glutDisplayFunc(MyDisplay);
 	glutReshapeFunc(MyReshape);
